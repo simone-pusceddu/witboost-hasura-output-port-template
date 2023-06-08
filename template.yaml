@@ -1,0 +1,189 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: hasura-outputport-template.1
+  title: Output Port Hasura Template
+  description: Create a repository containing the definition of a Hasura Output Port
+  mesh:
+    icon: https://www.freelogovectors.net/hasura-logo/
+  tags:
+    - hasura
+    - output-port
+    - graphql
+spec:
+  owner: agilelab
+  type: outputport
+
+  parameters:
+    - title: Component Basic Information
+      description: To provide metadata to create a component from this template.
+      required:
+        - name
+        - domain
+        - dataproduct
+        - description
+        - dependsOn
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Required Name for display purposes
+          ui:field: EntityNamePicker
+          default: Hasura Output Port
+          ui:options:
+            allowArbitraryValues: true
+        fullyQualifiedName:
+          title: Fully Qualified Name
+          type: string
+          description: Fully Qualified Name of the Output Port
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this Output Port is for
+        domain:
+          title: Domain
+          type: string
+          description: Domain of the Data Product this Output Port belongs to
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            allowedKinds:
+              - Domain
+        dataproduct:
+          title: Data Product
+          type: string
+          description: Data Product this Output Port belongs to
+          ui:field: EntityPicker
+          ui:filter:
+            - fieldName: domain
+              entityPath: spec.domain
+          ui:options:
+            allowArbitraryValues: false
+            allowedKinds:
+              - System
+        identifier:
+          title: Identifier
+          type: string
+          description: A unique identifier for the entity inside the domain. It will not be editable after creation and is expected to be a string that is sequences of [a-zA-Z] separated by any of [-_]. An example could be 'finance-customer'
+          ui:field: ComponentIdentifierPicker
+          ui:options:
+            allowArbitraryValues: false
+        developmentGroup:
+          title: Development Group
+          type: string
+          description: Data Product development Group
+          ui:field: EntitySelectionPicker
+          ui:fieldName: dataproduct
+          ui:property: spec.owner
+          ui:options:
+            allowArbitraryValues: false
+        dependsOn:
+          title: Depends On
+          type: string
+          description: This Output Port must depend on existing output port from which it pulls the data
+          ui:field: EntityComponentsPicker
+          ui:fieldName: dataproduct
+          ui:options:
+            allowArbitraryValues: false
+
+
+    - title: GraphQL Queries
+      description: Provide custom values for the table name and GraphQL queries that will be created inside Hasura. Note that for this to be compatible to GraphQL, all fields are limited to letters, numbers, and underscores.
+      properties:
+        customTableName:
+          title: Custom Table Name
+          type: string
+          description: Name of the Table. If not provided, then the default value (in this case, it will be of the form <DOMAIN_NAME>_<DP_NAME>_<MAJOR_VERSION>_<NORMALIZED_OUTPUT_PORT_NAME>) will be used.
+          ui:field: RegexPicker
+          validation:
+            errorMessage: The name provided is not in accordance with the naming convention.
+            regularExpression: ([a-zA-Z\_])\w+
+        select:
+          title: select
+          type: string
+          description: select. If not provided, then the default value (in this case, it will be of the form <DOMAIN_NAME>_<DP_NAME>_<MAJOR_VERSION>_<NORMALIZED_OUTPUT_PORT_NAME>) will be used.
+          ui:field: RegexPicker
+          validation:
+            errorMessage: The name provided is not in accordance with the naming convention.
+            regularExpression: ([a-zA-Z\_])\w+
+        selectByPk:
+          title: select by pk
+          type: string
+          description: select by primary key. If not provided, then the default value (in this case, it will be of the form <DOMAIN_NAME>_<DP_NAME>_<MAJOR_VERSION>_<NORMALIZED_OUTPUT_PORT_NAME>_by_pk) will be used.
+          ui:field: RegexPicker
+          validation:
+            errorMessage: The name provided is not in accordance with the naming convention.
+            regularExpression: ([a-zA-Z\_])\w+
+        selectAggregate:
+          title: select aggregate
+          type: string
+          description: select aggregate. If not provided, then the default value (in this case, it will be of the form <DOMAIN_NAME>_<DP_NAME>_<MAJOR_VERSION>_<NORMALIZED_OUTPUT_PORT_NAME>_aggregate) will be used.
+          ui:field: RegexPicker
+          validation:
+            errorMessage: The name provided is not in accordance with the naming convention.
+            regularExpression: ([a-zA-Z\_])\w+
+        selectStream:
+          title: select stream
+          type: string
+          description: select stream. If not provided, then the default value (in this case, it will be of the form <DOMAIN_NAME>_<DP_NAME>_<MAJOR_VERSION>_<NORMALIZED_OUTPUT_PORT_NAME>_stream) will be used.
+          ui:field: RegexPicker
+          validation:
+            errorMessage: The name provided is not in accordance with the naming convention.
+            regularExpression: ([a-zA-Z\_])\w+
+
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        targetPath: '.'
+        values:
+          name: '${{ parameters.name }}'
+          fullyQualifiedName: '${{ parameters.fullyQualifiedName }}'
+          description: '${{ parameters.description }}'
+          domain: '${{ parameters.domain }}'
+          dataproduct: '${{ parameters.dataproduct }}'
+          identifier: '${{ parameters.identifier }}'
+          developmentGroup: '${{ parameters.developmentGroup }}'
+          dependsOn: '${{ parameters.dependsOn }}'
+          readsFrom: '${{ parameters.readsFrom }}'
+          customTableName: '${{ parameters.customTableName }}'
+          select: '${{ parameters.select }}'
+          selectByPk: '${{ parameters.selectByPk }}'
+          selectAggregate: '${{ parameters.selectAggregate }}'
+          selectStream: '${{ parameters.selectStream }}'
+          creationDate: '${{ parameters.creationDate }}'
+          useCaseTemplateId: urn:dmb:utm:hasura-outputport-template:0.0.0
+          infrastructureTemplateId: urn:dmb:itm:hasura-outputport-provisioner:0
+          repoUrl: 'gitlab.com?owner=AgileDMBSandbox%2FPopeye%2Fmesh.repository%2F${{ parameters.domain | replace(r/domain:| |-/, "") }}%2F${{ parameters.dataproduct.split(".")[1] | replace(r/ |-/, "") }}&repo=${{ parameters.name.split(" ") | join("") | lower }}'
+          rootDirectory: '.'
+          displayName: '${{ parameters.displayName }}'
+          artifact_id: '${{ parameters.name }}'
+          useCaseTemplateVersion: 0.0.0
+
+    - id: publish
+      name: publish
+      action: witboostMeshComponent:publish:gitlab
+      input:
+        allowedHosts: [ 'gitlab.com' ]
+        description: 'This is ${{ parameters.name }}'
+        repoUrl: 'gitlab.com?owner=AgileDMBSandbox%2FPopeye%2Fmesh.repository%2F${{ parameters.domain | replace(r/domain:| |-/, "") }}%2F${{ parameters.dataproduct.split(".")[1] | replace(r/ |-/, "") }}&repo=${{ parameters.name.split(" ") | join("") | lower }}'
+        rootDirectory: '.'
+        dataproduct: '${{ parameters.dataproduct }}'
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: '${{ steps.publish.output.repoContentsUrl }}'
+        catalogInfoPath: '/catalog-info.yaml'
+
+
+  output:
+    links:
+      - title: Repository
+        url: '${{ steps.publish.output.remoteUrl }}'
+      - title: Open in catalog
+        icon: catalog
+        entityRef: '${{ steps.register.output.entityRef }}'
