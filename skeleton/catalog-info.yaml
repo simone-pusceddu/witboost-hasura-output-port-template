@@ -1,0 +1,41 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.identifier }}
+  description: ${{ values.description | dump }}
+  annotations:
+    gitlab.com/project-slug: 'AgileDMBSandbox/Popeye/mesh.repository/${{ values.domain | replace(r/domain:| |-/, "") }}/${{ values.dataproduct.split(".")[1] | replace(r/ |-/, "") }}/${{ values.name.split(" ") | join("") | lower }}'
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - outputport
+    - hasura
+    - graphql
+spec:
+  type: outputport
+  lifecycle: experimental
+  owner: ${{ values.developmentGroup | dump }}
+  system: ${{ values.dataproduct | dump }}
+  domain: ${{ values.domain | dump }}
+  mesh:
+    name: ${{ values.name | dump }}
+    fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}
+    description: ${{ values.description | dump }}
+    kind: outputport
+    version: ${{ values.identifier.split(".")[2] + ".0.0" }}
+    infrastructureTemplateId: ${{ values.infrastructureTemplateId }}
+    useCaseTemplateId: ${{ values.useCaseTemplateId }}
+    dependsOn: ${{ values.dependsOn }}
+    platform: Hasura
+    technology: Hasura
+    outputPortType: GraphQL
+    creationDate: ${{ values.creationDate }}
+    startDate: ${{ values.creationDate }}
+    tags: []
+    sampleData: {}
+    semanticLinking: []
+    specific:
+      customTableName: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + default(values.customTableName, true) | values.name.split(" ") | join("") | lower) | upper | dump }}
+      select: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + default(values.select, true) | values.name.split(" ") | join("") | lower) | upper | dump }}
+      selectByPk: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + default(values.selectByPk, true) | values.name.split(" ") | join("") | lower + "_by_pk") | upper | dump }}
+      selectAggregate: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + default(values.selectAggregate, true) | values.name.split(" ") | join("") | lower + "_aggregate") | upper | dump }}
+      selectStream: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + default(values.selectAggregate, true) | values.name.split(" ") | join("") | lower + "_stream") | upper | dump }}
