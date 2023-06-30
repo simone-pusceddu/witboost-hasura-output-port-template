@@ -4,7 +4,7 @@ metadata:
   name: ${{ values.identifier }}
   description: ${{ values.description | dump }}
   annotations:
-    gitlab.com/project-slug: 'AgileDMBSandbox/Popeye/mesh.repository/${{ values.domain | replace(r/domain:| |-/, "") }}/${{ values.dataproduct.split(".")[1] | replace(r/ |-/, "") }}/${{ values.name.split(" ") | join("") | lower }}'
+    gitlab.com/project-slug: 'AgileDMBSandbox/${{orgname}}/mesh.repository/${{ values.domain | replace(r/domain:| |-/, "") }}/${{ values.dataproduct.split(".")[1] | replace(r/ |-/g, "") }}/${{ values.name.split(" ") | join("") | lower }}'
     backstage.io/techdocs-ref: dir:.
   tags:
     - outputport
@@ -34,8 +34,8 @@ spec:
     sampleData: {}
     semanticLinking: []
     specific:
-      customTableName: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + values.customTableName | default(values.name.split(" ").join(""), true)) | dump }}
-      select: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + values.select | default(values.customTableName, true) | default(values.name.split(" ").join(""), true)) | dump }}
-      selectByPk: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + values.selectByPk | default(values.customTableName) | default(values.name.split(" ").join(""), true) + "_by_pk") | dump }}
-      selectAggregate: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + values.selectAggregate | default(values.customTableName) | default(values.name.split(" ").join(""), true) + "_aggregate") | dump }}
-      selectStream: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/, "") + "_" + values.identifier.split(".")[2] + "_" + values.selectStream | default(values.customTableName) | default(values.name.split(" ").join(""), true) + "_stream") | dump }}
+      customTableName: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/g, "") + "_" + values.identifier.split(".")[2] + "_" + values.customTableName | default(values.name.split(" ").join(""), true)) | dump }}
+      select: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/g, "") + "_" + values.identifier.split(".")[2] + "_" + values.select | default(values.customTableName, true) | default(values.name.split(" ").join(""), true)) | dump }}
+      selectByPk: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/g, "") + "_" + values.identifier.split(".")[2] + "_" + values.selectByPk | default(values.customTableName, true) | default(values.name.split(" ").join(""), true) + "_by_pk") | dump }}
+      selectAggregate: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/g, "") + "_" + values.identifier.split(".")[2] + "_" + values.selectAggregate | default(values.customTableName, true) | default(values.name.split(" ").join(""), true) + "_aggregate") | dump }}
+      selectStream: ${{ (values.domain | replace(r/domain:| |-/, "") + "_" + values.dataproduct.split(".")[1] | replace(r/ |-/g, "") + "_" + values.identifier.split(".")[2] + "_" + values.selectStream | default(values.customTableName, true) | default(values.name.split(" ").join(""), true) + "_stream") | dump }}
