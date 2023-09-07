@@ -1,4 +1,4 @@
-# Component Information
+## Component Information
 
 | Field Name       | Value                     |
 |:-----------------|:--------------------------|
@@ -10,7 +10,7 @@
 | **Depends On**   | ${{ values.dependsOn }}   |
 
 
-# GraphQL Queries
+## GraphQL Queries
 
 | Field Name            | Value                         |
 |:----------------------|:------------------------------|
