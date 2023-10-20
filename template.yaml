@@ -5,7 +5,7 @@ metadata:
   title: Output Port Hasura Template
   description: Create a repository containing the definition of a Hasura Output Port
   mesh:
-    icon: https://ww1.freelogovectors.net/wp-content/uploads/2022/03/hasura_logo_freelogovectors.net_.png
+    icon: https://seeklogo.com/images/H/hasura-logo-B718105639-seeklogo.com.png
   tags:
     - hasura
     - output-port
