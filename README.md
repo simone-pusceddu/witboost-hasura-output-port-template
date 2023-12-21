@@ -1,24 +1,25 @@
+<br/>
 <p align="center">
     <a href="https://www.agilelab.it/witboost">
-        <img src="docs/img/witboost_light.png" alt="witboost" width=600 >
+        <img src="docs/img/witboost_logo.svg" alt="witboost" width=600 >
     </a>
 </p>
+<br/>
 
-Designed by [Agile Lab](https://www.agilelab.it/), witboost is a versatile platform that addresses a wide range of sophisticated data engineering challenges. It enables businesses to discover, enhance, and productize their data, fostering the creation of automated data platforms that adhere to the highest standards of data governance. Want to know more about witboost? Check it out [here](https://www.agilelab.it/witboost) or [contact us!](https://www.agilelab.it/contacts)
+Designed by [Agile Lab](https://www.agilelab.it/), Witboost is a versatile platform that addresses a wide range of sophisticated data engineering challenges. It enables businesses to discover, enhance, and productize their data, fostering the creation of automated data platforms that adhere to the highest standards of data governance. Want to know more about Witboost? Check it out [here](https://www.agilelab.it/witboost) or [contact us!](https://www.agilelab.it/contacts)
 
-This repository is part of our [Starter Kit](https://github.com/agile-lab-dev/witboost-starter-kit) meant to showcase witboost's integration capabilities and provide a "batteries-included" product.
+This repository is part of our [Starter Kit](https://github.com/agile-lab-dev/witboost-starter-kit) meant to showcase Witboost's integration capabilities and provide a "batteries-included" product.
 
 # Hasura Output Port Template
 
 - [Overview](#overview)
 - [Usage](#usage)
 
-
 ## Overview
 
 Use this template to create an **GraphQL Output Port** based on a Hasura Enterprise instance.
 
-Refer to the [witboost Starter Kit repository](https://github.com/agile-lab-dev/witboost-starter-kit) for information on the Specific Provisioner that can be used to deploy components created with this template.
+Refer to the [Witboost Starter Kit repository](https://github.com/agile-lab-dev/witboost-starter-kit) for information on the Specific Provisioner that can be used to deploy components created with this template.
 
 ### What's a Template?
 
@@ -32,7 +33,7 @@ An Output Port refers to the interface that a Data Product uses to provide data 
 
 ## Hasura
 
-Hasura is an open-source platform that provides a unified API layer over your data sources. It can be used to expose data from a variety of sources, including relational databases, NoSQL databases, and cloud storage.
+[Hasura](https://hasura.io/) is an open-source platform that provides a unified API layer over your data sources. It can be used to expose data from a variety of sources, including relational databases, NoSQL databases, and cloud storage.
 It provides a number of benefits, including:
 - Ease of use: Hasura is easy to use, even for non-technical users. It can be deployed in minutes, and it does not require any code changes to your data sources.
 - Flexibility: Hasura can be used to expose data from a variety of sources. It also supports a variety of data access patterns, such as CRUD, GraphQL, and SQL.
@@ -53,11 +54,13 @@ This project is available under the [Apache License, Version 2.0](https://openso
 
 ## About us
 
+<br/>
 <p align="center">
     <a href="https://www.agilelab.it">
-        <img src="docs/img/agilelab_logo.jpg" alt="Agile Lab" width=600>
+        <img src="docs/img/agilelab_logo.svg" alt="Agile Lab" width=600>
     </a>
 </p>
+<br/>
 
 Agile Lab creates value for its Clients in data-intensive environments through customizable solutions to establish performance driven processes, sustainable architectures, and automated platforms driven by data governance best practices.
 
