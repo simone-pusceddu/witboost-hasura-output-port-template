@@ -17,7 +17,9 @@ This repository is part of our [Starter Kit](https://github.com/agile-lab-dev/wi
 
 ## Overview
 
-Use this template to create an **GraphQL Output Port** based on a Hasura Enterprise instance.
+![Hasura Output Port](docs/images/template_introduction_diagram.png)
+
+Use this template to create an Output Port based on a Hasura Enterprise instance. It enables consumers to access your Data Product's data using GraphQL queries. The underlying data is provided by another Output Port; right now only Snowflake Output Ports are supported.
 
 Refer to the [Witboost Starter Kit repository](https://github.com/agile-lab-dev/witboost-starter-kit) for information on the Specific Provisioner that can be used to deploy components created with this template.
 
