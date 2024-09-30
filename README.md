@@ -50,6 +50,12 @@ Learn more about it on the [official website](https://hasura.io/docs/latest/inde
 
 To get information on how to use this template, refer to this [document](./docs/index.md).
 
+### Component Testing
+
+To verify the component before deploying it along with the Data Product, the component needs to be tested against a CUE Policy defined for a [Hasura Output Port](./policies/hasura.cue). This policy needs to be defined inside the **Governance** section of the Witboost Platform.
+
+For more information, please refer to the [official documentation](https://docs.witboost.agilelab.it/docs/p1_user/p5_managing_policies/p5_1_overview).
+
 ## License
 
 This project is available under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0); see [LICENSE](LICENSE) for full details.
