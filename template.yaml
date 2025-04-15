@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: hasura-outputport-template.1
-  title: Hasura Output Port
+  name: hasura-outputport-template-skeleton
+  title: Hasura Output Port (Skeleton)
   description: Create a GraphQL Output Port based on Hasura
   annotations:
     backstage.io/techdocs-ref: dir:.
